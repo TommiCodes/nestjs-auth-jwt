@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14
 
 # Create app directory, this is in our container/in our image
 WORKDIR /thomas/src/app
