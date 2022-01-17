@@ -1,22 +1,23 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class UserEntity {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column({unique: true})
-    email: string;
+  @Column({ unique: true })
+  email: string;
 
-    @Column({select: false})
-    password: string;
+  @Column({ select: false })
+  password: string;
 
-    @BeforeInsert()
-    emailToLowerCase() {
-        this.email = this.email.toLowerCase();
-    }
+  @BeforeInsert()
+  @BeforeUpdate()
+  emailToLowerCase() {
+    this.email = this.email.toLowerCase();
+  }
 }
